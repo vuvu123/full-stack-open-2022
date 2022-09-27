@@ -6,7 +6,21 @@ const Button = ( {handleClick, text} ) => {
   return <button onClick={handleClick}>{text}</button>
 }
 
-const Statistics = ( {type, count} ) => <div>{type} {count}</div>
+const Statistics = ( { good, neutral, bad, totalFeedback, average, positivePercent, isFeedbackGiven } ) => {
+  if (!isFeedbackGiven) return <div>No feedback given</div>
+  return (
+    <div>
+      <StatisticLine text='good' value={good} />
+      <StatisticLine text='neutral' value={neutral} />
+      <StatisticLine text='bad' value={bad} />
+      <StatisticLine text='all' value={totalFeedback} />
+      <StatisticLine text='average' value={average} />
+      <StatisticLine text='positive' value={positivePercent + '%'} />
+    </div>
+  )
+}
+
+const StatisticLine = ( {text, value} ) => <div>{text} {value}</div>
 
 const App = () => {
   const [good, setGood] = useState(0)
@@ -19,13 +33,18 @@ const App = () => {
 
   let totalFeedback = good + neutral + bad
 
+  const isFeedbackGiven = () => {
+    if (good === 0 && neutral === 0 && bad === 0) return false
+    return true
+  }
+
   const average = () => {
-    if (good === 0 && neutral === 0 && bad === 0) return 0
+    if (!isFeedbackGiven()) return 0
     return (good - bad) / totalFeedback
   }
 
   const positivePercent = () => {
-    if (good === 0 && neutral === 0 && bad === 0) return 0
+    if (!isFeedbackGiven()) return 0
     return good / totalFeedback * 100
   }
 
@@ -36,12 +55,15 @@ const App = () => {
       <Button handleClick={addNeutralFeedback} text='neutral' />
       <Button handleClick={addBadFeedback} text='bad' />
       <Header title='statistics' />
-      <Statistics type='good' count={good} />
-      <Statistics type='neutral' count={neutral} />
-      <Statistics type='bad' count={bad} />
-      <Statistics type='all' count={totalFeedback} />
-      <Statistics type='average' count={average()} />
-      <Statistics type='positive' count={positivePercent() + '%'} />
+      <Statistics 
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        totalFeedback={totalFeedback}
+        average={average()}
+        positivePercent={positivePercent()}
+        isFeedbackGiven={isFeedbackGiven()}
+         />
     </div>
   )
 }
