@@ -9,44 +9,40 @@ const Button = ( {handleClick, text} ) => {
 const Statistics = ( { good, neutral, bad, totalFeedback, average, positivePercent, isFeedbackGiven } ) => {
   if (!isFeedbackGiven) return <div>No feedback given</div>
   return (
-    <div>
-      <StatisticLine text='good' value={good} />
-      <StatisticLine text='neutral' value={neutral} />
-      <StatisticLine text='bad' value={bad} />
-      <StatisticLine text='all' value={totalFeedback} />
-      <StatisticLine text='average' value={average} />
-      <StatisticLine text='positive' value={positivePercent + '%'} />
-    </div>
+    <table>
+      <tbody>
+        <StatisticLine text='good' value={good} />
+        <StatisticLine text='neutral' value={neutral} />
+        <StatisticLine text='bad' value={bad} />
+        <StatisticLine text='all' value={totalFeedback} />
+        <StatisticLine text='average' value={average} />
+        <StatisticLine text='positive' value={positivePercent + ' %'} />
+      </tbody>
+    </table>
   )
 }
 
-const StatisticLine = ( {text, value} ) => <div>{text} {value}</div>
+const StatisticLine = ( {text, value} ) => {
+  return (
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  )
+}
 
 const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  let totalFeedback = good + neutral + bad
 
   const addGoodFeedback = () => setGood(good + 1)
   const addNeutralFeedback = () => setNeutral(neutral + 1)
   const addBadFeedback = () => setBad(bad + 1)
-
-  let totalFeedback = good + neutral + bad
-
-  const isFeedbackGiven = () => {
-    if (good === 0 && neutral === 0 && bad === 0) return false
-    return true
-  }
-
-  const average = () => {
-    if (!isFeedbackGiven()) return 0
-    return (good - bad) / totalFeedback
-  }
-
-  const positivePercent = () => {
-    if (!isFeedbackGiven()) return 0
-    return good / totalFeedback * 100
-  }
+  const isFeedbackGiven = () => !(good === 0 && neutral === 0 && bad === 0)
+  const average = () => (good - bad) / totalFeedback
+  const positivePercent = () => good / totalFeedback * 100
 
   return (
     <div>
