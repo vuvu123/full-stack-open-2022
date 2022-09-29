@@ -1,6 +1,4 @@
-const Person = (props) => {
-  const { name, number } = props
-
+const Person = ({ name, number }) => {
   return <div>{name} {number}</div>
 }
 
