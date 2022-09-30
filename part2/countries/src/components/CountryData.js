@@ -1,3 +1,5 @@
+import WeatherData from "./WeatherData"
+
 const CountryData = (props) => {
   const {country} = props
 
@@ -13,6 +15,7 @@ const CountryData = (props) => {
             )}
         </ul>
         <img src={country.flags.png} alt={country.name.common + ' flag'}></img>
+        <WeatherData city={country.capital} />
     </div>
   )
 
