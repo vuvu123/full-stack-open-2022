@@ -3,7 +3,7 @@ import axios from 'axios'
 import Countries from './components/Countries'
 
 const App = () => {
-  const [search, setSearch] = useState('')
+  const [filter, setFilter] = useState('')
   const [countries, setCountries] = useState([])
   const [countriesToShow, setCountriesToShow] = useState([])
 
@@ -16,25 +16,25 @@ const App = () => {
   }
   useEffect(hook, [])
 
-  const handleCountrySearch = (event) => {
-    const input = event.target.value
-    setSearch(input)
-
+  const handleFilter = (event) => {
+    const search = event.target.value
+    setFilter(search)
     setCountriesToShow(
-      countries.filter(country => {
-        country.name.common.toLowerCase().includes(input.toLowerCase())
-      })
+      countries.filter(country =>
+        country.name.common.toLowerCase().includes(search.toLowerCase()))
     )
   }
 
   return (
     <div>
       <div>
-      final countries <input value={search} onChange={handleCountrySearch} />
+        Find countries <input value={filter} onChange={handleFilter} />
       </div>
-      <Countries countriesToShow={countriesToShow} />
+      <div>
+        <Countries countriesToShow={countriesToShow} />
+      </div>
     </div>
   )
 }
 
-export default App;
+export default App
