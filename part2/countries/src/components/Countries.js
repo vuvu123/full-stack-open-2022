@@ -1,7 +1,9 @@
+import { useState } from "react"
 import CountryData from "./CountryData"
 
 const Countries = (props) => {
   const { countriesToShow } = props
+  const [country, setCountry] = useState('')
 
   if (countriesToShow.length > 10) {
     return <div>Too many matches, specify another filter</div>
@@ -11,7 +13,10 @@ const Countries = (props) => {
     return (
       <div>
         {countriesToShow.map(country =>
-          <div key={country.name.official}>{country.name.common}</div>)}
+          <div key={country.name.official}>
+            {country.name.common} <button onClick={() => setCountry(country)}>Show</button>
+          </div>)}
+        {country ? <CountryData country={country} /> : null}
       </div>
     )
   } 
