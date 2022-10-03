@@ -3,7 +3,6 @@ import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
 import personsService from './services/persons'
-import axios from 'axios'
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -64,6 +63,13 @@ const App = () => {
     ? persons
     : persons.filter(person => person.name.toLowerCase().includes(newFilter.toLowerCase()))
 
+  const deletePerson = (id) => { 
+    personsService
+      .remove(id)
+      .then(returnedPersons => {
+        setPersons(returnedPersons)
+      })
+  }
 
   return (
     <div>
@@ -78,7 +84,7 @@ const App = () => {
         handleNumberChange={handleNumberChange} 
         />
       <h3>Numbers</h3>
-      <Persons personsToShow={personsToShow} />
+      <Persons personsToShow={personsToShow} deletePerson={deletePerson} />
     </div>
   )
 }
