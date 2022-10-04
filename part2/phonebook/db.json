@@ -1,3 +1,39 @@
 {
-  "persons": []
+  "persons": [
+    {
+      "name": "Kenny Vu",
+      "number": "949-395-6813",
+      "id": 1
+    },
+    {
+      "name": "Joe Dirt",
+      "number": "123-456-5555",
+      "id": 2
+    },
+    {
+      "name": "Rhaenerys Targyarean",
+      "number": "999-999-5555",
+      "id": 3
+    },
+    {
+      "name": "Kevin Vu",
+      "number": "949-395-6814",
+      "id": 4
+    },
+    {
+      "name": "Kobe Bryant",
+      "number": "714-395-6812",
+      "id": 6
+    },
+    {
+      "name": "Jim Cramer",
+      "number": "555-555-5555",
+      "id": 7
+    },
+    {
+      "name": "O.J. Simpson",
+      "number": "1-800-121-2392",
+      "id": 8
+    }
+  ]
 }

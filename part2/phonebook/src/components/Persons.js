@@ -1,14 +1,12 @@
-import Person from './Person'
-
 const Persons = ({ personsToShow, deletePerson }) => {
   return (
     <div>
         {personsToShow.map(person => 
-          <Person 
-            key={person.name} 
-            name={person.name} 
-            number={person.number}
-            deletePerson={deletePerson(person.id)} />)}
+          <div key={person.name}>
+            {person.name} {person.number} 
+            <button onClick={() => deletePerson(person.id, person.name)}>delete</button>
+            </div>
+        )}
     </div>
   )
 }
