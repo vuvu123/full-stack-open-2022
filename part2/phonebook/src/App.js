@@ -11,7 +11,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
   const [showAllPersons, setShowAllPersons] = useState(true)
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState(null)
 
   useEffect(() => {
     personsService
@@ -76,6 +76,12 @@ const App = () => {
           setPersons(updatedPersons)
           setShowAllPersons(updatedPersons)
         })
+        .catch(error => {
+          setMessage(`Could not delete because person does not exist.`)
+        })
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
   }
 
   const updatePerson = (id, personObject) => {
@@ -90,6 +96,10 @@ const App = () => {
         setMessage(`Updated ${returnedPerson.name}'s phone number to ${returnedPerson.number}.`)
         setNewName('')
         setNewNumber('')
+      })
+      .catch(error => {
+        console.log(error)
+        setMessage(`Information of ${newName} has already been removed from the server.`)
       })
     setTimeout(() => {
       setMessage(null)
