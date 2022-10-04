@@ -40,7 +40,7 @@ const App = () => {
     }
 
     for (const person of persons) {
-      if (person.name === newName) {
+      if (person.name.toLowerCase() === newName.toLowerCase()) {
         if (window.confirm(`${person.name} is already added to phonebook, replace the old number with a new one?`)) {
           updatePerson(person.id, newPerson)
         }
