@@ -34,15 +34,18 @@ const App = () => {
   
   const addPerson = (event) => {
     event.preventDefault()
-    for (const person of persons) {
-      if (person.name === newName) {
-        alert(`${person.name} is already added to phonebook`)
-        return
-      }
-    }
     const newPerson = {
       name: newName,
       number: newNumber
+    }
+
+    for (const person of persons) {
+      if (person.name === newName) {
+        if (window.confirm(`${person.name} is already added to phonebook, replace the old number with a new one?`)) {
+          updatePerson(person.id, newPerson)
+        }
+        return
+      }
     }
 
     personsService
@@ -67,6 +70,20 @@ const App = () => {
           setPersons(updatedPersons)
           setShowAllPersons(updatedPersons)
         })
+  }
+
+  const updatePerson = (id, personObject) => {
+    personsService
+      .update(id, personObject)
+      .then(returnedPerson => {
+        const updatedPersons = persons.map(person =>
+          person.id !== returnedPerson.id ? person : returnedPerson
+        )
+        setPersons(updatedPersons)
+        setShowAllPersons(updatedPersons)
+        setNewName('')
+        setNewNumber('')
+      })
   }
 
   return (
