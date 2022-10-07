@@ -17,12 +17,11 @@ const showAllPersons = () => {
   mongoose
   .connect(url)
   .then((result) => {
-    console.log('connected')
-    console.log('')
+    console.log('connected', '\n')
     console.log('Phonebook:')
     
-    Person.find({}).then(result => {
-      result.forEach(person => {
+    Person.find({}).then(persons => {
+      persons.forEach(person => {
         console.log(person.name, person.number)
       })
       mongoose.connection.close()
