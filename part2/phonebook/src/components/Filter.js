@@ -1,9 +1,11 @@
-const Filter = ({ newFilter, filterName }) => {
-  return (
-    <div>
-      filter shown with <input value={newFilter} onChange={filterName} />
-    </div>
-  )
+const Filter = ({ value, handleChange }) => {
+  return <>
+    Filter shown with
+    <input
+      value={value}
+      onChange={handleChange}
+    />
+  </>
 }
 
 export default Filter

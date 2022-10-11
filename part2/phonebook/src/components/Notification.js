@@ -1,18 +1,21 @@
-const Notification = ({ message }) => {
-  let messageClass = 'message-green'
-  if (message === null) return null
-
-  if (message.includes('remove') || message.includes('delete')) {
-    messageClass = 'message-red'
+const Notification = ({ notification }) => {
+  if (notification === null) {
+    return null
   }
 
-  if (message.includes('Add') || message.includes('Update')) {
-    messageClass = 'message-green'
+  const style = {
+    color: notification.type === 'alert' ? 'red' : 'green',
+    background: 'lightgrey',
+    fontSize: 20,
+    borderStyle: 'solid',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10
   }
 
   return (
-    <div className={messageClass}>
-      {message}
+    <div style={style}>
+      {notification.message}
     </div>
   )
 }

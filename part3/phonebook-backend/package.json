@@ -13,7 +13,7 @@
     "logs:prod": "heroku logs --tail"
   },
   "author": "Kenny Vu",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
