@@ -1,4 +1,4 @@
-const { dummy, totalLikes, favoriteBlog, mostBlogs } = require('../utils/list_helper')
+const { dummy, totalLikes, favoriteBlog, mostBlogs, mostLikes } = require('../utils/list_helper')
 
 const emptyBlogList = []
 
@@ -107,7 +107,7 @@ describe('favorite blog', () => {
 })
 
 describe('most blogs', () => {
-  test.only('author with most blogs', () => {
+  test('author with most blogs', () => {
     expect(mostBlogs(blogs)).toEqual({
       author: 'Robert C. Martin',
       blogs: 3
@@ -115,3 +115,11 @@ describe('most blogs', () => {
   })
 })
 
+describe('most likes', () => {
+  test('author with most total likes', () => {
+    expect(mostLikes(blogs)).toEqual({
+      author: "Edsger W. Dijkstra",
+      likes: 17
+    })
+  })
+})
