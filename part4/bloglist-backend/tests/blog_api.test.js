@@ -8,11 +8,7 @@ const helper = require('../utils/test_helper')
 
 beforeEach(async () => {
   await Blog.deleteMany({})
-
-  for (const blog of helper.initialBlogs) {
-    let blogObject = new Blog(blog)
-    await blogObject.save()
-  }
+  await Blog.insertMany(helper.initialBlogs)
 })
 
 test('blogs returned as json', async () => {
@@ -88,6 +84,21 @@ test('post blogs with no title or url properties', async () => {
 
   const blogsAtEnd = await helper.blogsInDb()
   expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length)
+})
+
+test('return status 204 for deleting blogs', async () => {
+  const blogsAtStart = await helper.blogsInDb()
+  const blogToDelete = blogsAtStart[0]
+
+  await api
+    .delete(`/api/blogs/${blogToDelete.id}`)
+    .expect(204)
+
+  const blogsAtEnd = await helper.blogsInDb()
+  expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length - 1)
+
+  const titles = blogsAtEnd.map(blog => blog.title)
+  expect(titles).not.toContain('Web Dev Simplified')
 })
 
 afterAll(() => {
