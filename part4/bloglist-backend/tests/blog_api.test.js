@@ -37,6 +37,27 @@ test('verify blogs id property', async () => {
   }
 })
 
+test('total blogs increase by one', async () => {
+  const newBlog = {
+    title: 'Jimmy John subs rock',
+    author: 'Jimmy John',
+    url: 'http://blog.jimmyjohns.com',
+    likes: 1
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+  const blogsAtEnd = await helper.blogsInDb()
+  const authors = blogsAtEnd.map(blog => blog.title)
+
+  expect(authors).toHaveLength(helper.initialBlogs.length + 1)
+  expect(authors).toContain('Jimmy John subs rock')
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
