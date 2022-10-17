@@ -58,6 +58,24 @@ test('total blogs increase by one', async () => {
   expect(authors).toContain('Jimmy John subs rock')
 })
 
+test('blog without likes is not added', async () => {
+  const noLikeBlog = {
+    title: 'No likes',
+    author: 'Like Livingston',
+    url: 'http://nolikeshere.com'
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(noLikeBlog)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+  const blogsAtEnd = await helper.blogsInDb()
+  expect(blogsAtEnd.length).toBe(helper.initialBlogs.length + 1)
+  expect(blogsAtEnd[blogsAtEnd.length - 1].likes).toBe(0)
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
