@@ -5,8 +5,12 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-  "title": "Web Dev Simplified",
-  "author": "Kyle",
-  "url": "http://blog.webdevsimplified.com",
-  "likes": 69
+  "title": "CSS Master",
+  "author": "Kevin Powell",
+  "url": "http://blog.cssmaster.com",
+  "likes": 10,
+  "userId": "6358235ba6acaf69e2a61fdb"
 }
+
+###
+GET http://localhost:3003/api/users
