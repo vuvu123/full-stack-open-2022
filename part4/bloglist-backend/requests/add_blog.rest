@@ -5,11 +5,11 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-  "title": "CSS Master",
-  "author": "Kevin Powell",
-  "url": "http://blog.cssmaster.com",
-  "likes": 10,
-  "userId": "6358235ba6acaf69e2a61fdb"
+  "title": "JS",
+  "author": "Vanilla Man",
+  "url": "http://blog.js.com",
+  "likes": 53,
+  "userId": "6359670f37a2e2f4331e9efd"
 }
 
 ###
