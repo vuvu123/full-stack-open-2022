@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Blog from './components/Blog'
+import Notification from './components/Notification'
 import blogService from './services/blogs'
 import loginService from './services/login'
 
@@ -11,6 +12,7 @@ const App = () => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
+  const [message, setMessage] = useState(null)
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -20,18 +22,20 @@ const App = () => {
 
   const handleLogin = async event => {
     event.preventDefault()
-    console.log('Logging in as', username, password)
 
     try {
       const user = await loginService.login({ username, password, })
 
-      window.localStorage.setItem('loggedBlogAppUser', JSON.stringify(user))
+      window.localStorage.setItem(
+        'loggedBlogAppUser', JSON.stringify(user)
+      )
       blogService.setToken(user.token)
       setUser(user)
       setUsername('')
       setPassword('')
     } catch (exception) {
-      console.log('Failed login with', username, password)
+      setMessage('wrong username or password')
+      setTimeout(() => setMessage(null), 5000)
     }
   }
 
@@ -51,9 +55,11 @@ const App = () => {
     const response = await blogService.create(newBlog)
     const updatedBlogs = blogs.concat(response)
     setBlogs(updatedBlogs)
+    setMessage(`A new blog "${title}" by ${author} added.`)
     setTitle('')
     setAuthor('')
     setUrl('')
+    setTimeout(() => setMessage(null), 5000)
   }
 
   if (user === null) {
@@ -61,6 +67,7 @@ const App = () => {
       <div>
         <h2>Log in to application</h2>
         <form onSubmit={handleLogin}>
+          <Notification message={message} />
           <div>
             username 
             <input
@@ -88,6 +95,7 @@ const App = () => {
   return (
     <div>
       <h2>Blogs</h2>
+      <Notification message={message} />
       <p>
         {user.name} logged in
         <button onClick={handleLogout}>logout</button>
