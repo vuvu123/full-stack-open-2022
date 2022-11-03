@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 const Blog = ({ blog, updateLikes, removeBlog }) => {
   const [visible, setVisible] = useState(false)
@@ -23,7 +23,7 @@ const Blog = ({ blog, updateLikes, removeBlog }) => {
       likes: blog.likes + 1,
       user: blog.user.id,
     }
-    
+
     updateLikes(blog.id, updatedBlog)
   }
 
@@ -51,7 +51,7 @@ const Blog = ({ blog, updateLikes, removeBlog }) => {
           {blog.title} ➡ {blog.author}
           <button onClick={toggleVisibility}>view</button>
         </div> }
-    </div>  
+    </div>
   )
 }
 

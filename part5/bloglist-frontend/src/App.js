@@ -16,7 +16,7 @@ const App = () => {
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
   }, [])
 
   const handleLogin = async event => {
@@ -82,7 +82,7 @@ const App = () => {
         <form onSubmit={handleLogin}>
           <Notification message={message} />
           <div>
-            username 
+            username
             <input
               type='text'
               value={username}
@@ -120,10 +120,10 @@ const App = () => {
       {blogs
         .sort((a, b) => b.likes - a.likes)
         .map(blog =>
-          <Blog 
-            key={blog.id} 
-            blog={blog} 
-            updateLikes={updateLikes} 
+          <Blog
+            key={blog.id}
+            blog={blog}
+            updateLikes={updateLikes}
             removeBlog={removeBlog}
           />
         )}
