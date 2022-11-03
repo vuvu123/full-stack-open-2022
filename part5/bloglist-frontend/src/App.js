@@ -62,6 +62,17 @@ const App = () => {
     }
   }
 
+  const removeBlog = async (id) => {
+    const toDelete = blogs.find(blog => blog.id === id)
+    const ok = window.confirm(`Remove blog '${toDelete.title}' by ${toDelete.author}?`)
+    if (ok) {
+      await blogService.remove(id)
+      setBlogs(blogs.filter(blog => blog.id !== id))
+      setMessage(`${toDelete.title} by ${toDelete.author} deleted.`)
+      setTimeout(() => setMessage(null), 5000)
+    }
+  }
+
   const blogFormRef = useRef()
 
   if (user === null) {
@@ -109,7 +120,12 @@ const App = () => {
       {blogs
         .sort((a, b) => b.likes - a.likes)
         .map(blog =>
-          <Blog key={blog.id} blog={blog} updateLikes={updateLikes} />
+          <Blog 
+            key={blog.id} 
+            blog={blog} 
+            updateLikes={updateLikes} 
+            removeBlog={removeBlog}
+          />
         )}
     </div>
   )
