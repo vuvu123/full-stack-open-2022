@@ -33,7 +33,7 @@ test('checks blog url and likes are render after view button clicked', async () 
     url: 'http://www.example.com'
   }
 
-  render(<Blog blog={blog}  />)
+  render(<Blog blog={blog} />)
 
   const user = userEvent.setup()
   const viewButton = screen.getByText('view')
@@ -43,4 +43,27 @@ test('checks blog url and likes are render after view button clicked', async () 
   const likesElement = screen.getByText('likes: 10')
   expect(urlElement).toBeDefined()
   expect(likesElement).toBeDefined()
+})
+
+test('event handler called twice when like button clicked twice', async () => {
+  const blog = {
+    title: 'Renders title',
+    author: 'Author',
+    likes: 10,
+    url: 'http://www.example.com',
+    user: 1
+  }
+
+  const mockHandler = jest.fn()
+
+  render(<Blog blog={blog} updateLikes={mockHandler} />)
+
+  const user = userEvent.setup()
+  const viewButton = screen.getByText('view')
+  await user.click(viewButton)
+
+  const likeButton = screen.getByText('like')
+  await user.click(likeButton)
+  await user.click(likeButton)
+  expect(mockHandler.mock.calls).toHaveLength(2)
 })
