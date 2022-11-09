@@ -128,16 +128,18 @@ const App = () => {
       <Toggleable buttonLabel='create' ref={blogFormRef}>
         <BlogForm createBlog={createBlog} />
       </Toggleable>
-      {blogs
-        .sort((a, b) => b.likes - a.likes)
-        .map(blog =>
-          <Blog
-            key={blog.id}
-            blog={blog}
-            updateLikes={updateLikes}
-            removeBlog={removeBlog}
-          />
-        )}
+      <div className='blogs'>
+        {blogs
+          .sort((a, b) => b.likes - a.likes)
+          .map(blog =>
+            <Blog
+              key={blog.id}
+              blog={blog}
+              updateLikes={updateLikes}
+              removeBlog={removeBlog}
+            />
+          )}
+      </div>
     </div>
   )
 }

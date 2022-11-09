@@ -68,6 +68,13 @@ describe('Blog app', function() {
         cy.contains('like').click().click().click()
         cy.contains('likes: 3')
       })
+
+      it.only('blog can be deleted by user who created blog', function() {
+        cy.contains('fourth blog').find('button').click()
+        cy.contains('remove').click()
+        cy.contains('fourth blog by Blogger deleted.')
+        cy.get('.blogs').should('not.contain', 'fourth blog')
+      })
     })
   })
 })
