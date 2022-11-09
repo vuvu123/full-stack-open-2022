@@ -15,10 +15,27 @@ describe('Blog app', function() {
     cy.contains('Log in to application')
     cy.contains('username')
       .find('input')
-      .type('kvu123')
     cy.contains('password')
       .find('input')
-      .type('sdfsdf')
-    cy.contains('login').click()
+  })
+
+  describe('Login', function() {
+    it('succeeds with correct credentials', async function() {
+      const response = await cy.request('POST', 'http://localhost:3003/api/login', {
+        username: 'kvu123', password: 'sdfsdf'
+      })
+      localStorage.setItem('localBlogAppUser', JSON.stringify(response.body))
+      cy.visit('http://localhost:3000')
+    })
+
+    it('fails with wrong credentials', function() {
+      cy.visit('http://localhost:3000')
+      cy.contains('username').find('input').type('kvu123')
+      cy.contains('password').find('input').type('wrongpw')
+      cy.contains('login').click()
+      cy.get('.notification')
+        .contains('wrong username or password')
+        .should('have.css', 'background-color', 'rgb(245, 245, 220)')
+    })
   })
 })
