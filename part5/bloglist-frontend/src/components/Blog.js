@@ -33,7 +33,7 @@ const Blog = ({ blog, updateLikes, removeBlog }) => {
 
   const showBlogDetails = () => {
     return (
-      <div>
+      <div className='expanded-view'>
         <div>{blog.title} <button onClick={toggleVisibility}>hide</button></div>
         <div>{blog.url}</div>
         <div>likes: {blog.likes} <button onClick={handleLike}>like</button></div>
@@ -47,7 +47,7 @@ const Blog = ({ blog, updateLikes, removeBlog }) => {
     <div style={blogStyle}>
       { visible ?
         showBlogDetails() :
-        <div>
+        <div className='default-view blog'>
           {blog.title} ➡ {blog.author}
           <button onClick={toggleVisibility}>view</button>
         </div> }

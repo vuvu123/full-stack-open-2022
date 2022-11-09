@@ -65,16 +65,29 @@ describe('Blog app', function() {
 
       it('second blog can be liked multiple times', function() {
         cy.contains('second blog').find('button').click()
-        cy.contains('like').click().click().click()
-        cy.contains('likes: 3')
+        cy.contains('like').click().click()
+        cy.contains('likes: 2')
       })
 
-      it.only('blog can be deleted by user who created blog', function() {
+      it('blog can be deleted by user who created blog', function() {
         cy.contains('fourth blog').find('button').click()
         cy.contains('remove').click()
         cy.contains('fourth blog by Blogger deleted.')
-        cy.get('.blogs').should('not.contain', 'fourth blog')
+        cy.get('.blog').should('not.contain', 'fourth blog')
       })
+
+      it('blogs are ordered by likes', function() {
+        cy.contains('second blog').find('button').click()
+        cy.contains('like').click().click()
+        cy.contains('hide').click()
+        cy.contains('third blog').find('button').click()
+        cy.contains('like').click()
+        cy.contains('hide').click()
+
+        cy.get('.blog').eq(0).should('contain', 'second blog')
+        cy.get('.blog').eq(1).should('contain', 'third blog')
+      })
+
     })
   })
 })
