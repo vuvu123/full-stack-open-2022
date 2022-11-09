@@ -54,5 +54,20 @@ describe('Blog app', function() {
 
       cy.contains('Cypress Testing ➡ Tim Cypress')
     })
+
+    describe('and some blogs exist', function() {
+      beforeEach(function() {
+        cy.createBlog({ title: 'first blog', author: 'Blogger', url: 'http://blogman.com' })
+        cy.createBlog({ title: 'second blog', author: 'Blogger', url: 'http://blogman.com' })
+        cy.createBlog({ title: 'third blog', author: 'Blogger', url: 'http://blogman.com' })
+        cy.createBlog({ title: 'fourth blog', author: 'Blogger', url: 'http://blogman.com' })
+      })
+
+      it('second blog can be liked multiple times', function() {
+        cy.contains('second blog').find('button').click()
+        cy.contains('like').click().click().click()
+        cy.contains('likes: 3')
+      })
+    })
   })
 })
