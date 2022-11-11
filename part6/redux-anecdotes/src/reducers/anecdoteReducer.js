@@ -47,7 +47,10 @@ export const voteFor = (id) => {
 }
 
 export const createAnecdote = (anecdote) => {
-  asObject(anecdote)
+  return {
+    type: 'NEW_ANECDOTE',
+    data: asObject(anecdote)
+  }
 }
 
 export default reducer
