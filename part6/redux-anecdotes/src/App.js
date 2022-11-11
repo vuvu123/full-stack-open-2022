@@ -3,9 +3,8 @@ import { voteFor, createAnecdote } from './reducers/anecdoteReducer'
 
 const App = () => {
   const byLikes = (b1, b2) => b2.votes > b1.votes ? 1 : -1
-  const anecdotes = useSelector(state => {
-    return state.sort(byLikes)
-  })
+
+  const anecdotes = useSelector(state => state.sort(byLikes))
   const dispatch = useDispatch()
 
   const vote = (id) => {
