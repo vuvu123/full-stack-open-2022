@@ -3,9 +3,11 @@ import { voteFor } from '../reducers/anecdoteReducer'
 import { showNotification, hideNotification } from '../reducers/notificationReducer';
 
 const AnecdoteList = () => {
-  const byLikes = (b1, b2) => b2.votes > b1.votes ? 1 : -1
+  const anecdotes = useSelector(({ anecdotes, filter }) => {
+    return anecdotes.filter(anecdote =>
+        anecdote.content.toLowerCase().includes(filter.toLowerCase()))
+  })
 
-  const anecdotes = useSelector(state => state.anecdotes)
   const dispatch = useDispatch()
 
   const handleVote = (id) => {
@@ -15,13 +17,15 @@ const AnecdoteList = () => {
     setTimeout(() => dispatch(hideNotification()), 5000)
   }
 
+  const style = {
+    marginBottom: 10
+  }
+
   return (
     <div>
       {anecdotes
-        .slice()
-        .sort(byLikes)
         .map(anecdote =>
-          <div key={anecdote.id}>
+          <div key={anecdote.id} style={style}>
             <div>
               {anecdote.content}
             </div>
