@@ -4,7 +4,7 @@ import { voteFor } from '../reducers/anecdoteReducer'
 const AnecdoteList = () => {
   const byLikes = (b1, b2) => b2.votes > b1.votes ? 1 : -1
 
-  const anecdotes = useSelector(state => state.sort(byLikes))
+  const anecdotes = useSelector(state => state.anecdotes)
   const dispatch = useDispatch()
 
   const vote = (id) => {
@@ -13,17 +13,20 @@ const AnecdoteList = () => {
 
   return (
     <div>
-      {anecdotes.map(anecdote =>
-        <div key={anecdote.id}>
-          <div>
-            {anecdote.content}
+      {anecdotes
+        .slice()
+        .sort(byLikes)
+        .map(anecdote =>
+          <div key={anecdote.id}>
+            <div>
+              {anecdote.content}
+            </div>
+            <div>
+              has {anecdote.votes}
+              <button onClick={() => vote(anecdote.id)}>vote</button>
+            </div>
           </div>
-          <div>
-            has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id)}>vote</button>
-          </div>
-        </div>
-      )}
+        )}
     </div>
   )
 }
