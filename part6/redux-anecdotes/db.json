@@ -39,6 +39,16 @@
       "content": "List of anecdotes doesn't automatically refresh.",
       "votes": 0,
       "id": "1CXkKDf"
+    },
+    {
+      "content": "Add new anecdote using redux thunk",
+      "votes": 0,
+      "id": "9ZVxQT7"
+    },
+    {
+      "content": "Ayo dog",
+      "votes": 0,
+      "id": "1keTz0m"
     }
   ]
 }
