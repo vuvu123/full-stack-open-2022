@@ -3,7 +3,7 @@
     {
       "content": "If it hurts, do it more often",
       "id": "47145",
-      "votes": 19
+      "votes": 24
     },
     {
       "content": "Adding manpower to a late software project makes it later!",
@@ -42,7 +42,7 @@
     },
     {
       "content": "Adding new anecdote to backend",
-      "votes": 9,
+      "votes": 10,
       "id": "_anTONd"
     },
     {
@@ -52,8 +52,23 @@
     },
     {
       "content": "Add another new anecdote",
-      "votes": 2,
+      "votes": 8,
       "id": "5P1LFh1"
+    },
+    {
+      "content": "Notification refactor test",
+      "votes": 0,
+      "id": "ImuHToE"
+    },
+    {
+      "content": "Notification refactor test 2",
+      "votes": 7,
+      "id": "WOdRpmh"
+    },
+    {
+      "content": "hi again",
+      "votes": 2,
+      "id": "COCMj_X"
     }
   ]
 }
