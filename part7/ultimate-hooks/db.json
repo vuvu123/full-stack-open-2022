@@ -1,0 +1,77 @@
+{
+  "notes": [
+    {
+      "content": "custom-hooks are great",
+      "id": 1
+    },
+    {
+      "content": "the best featrure ever <3",
+      "id": 2
+    },
+    {
+      "content": "new note",
+      "id": 3
+    },
+    {
+      "content": "another one",
+      "id": 4
+    },
+    {
+      "content": "another new note",
+      "id": 5
+    },
+    {
+      "content": "test",
+      "id": 6
+    },
+    {
+      "content": "another test",
+      "id": 7
+    },
+    {
+      "content": "another test",
+      "id": 8
+    },
+    {
+      "content": "test #3",
+      "id": 9
+    }
+  ],
+  "persons": [
+    {
+      "name": "mluukkai",
+      "number": "040-5483923",
+      "id": 1
+    },
+    {
+      "name": "kaltsoon",
+      "number": "045-2323456",
+      "id": 2
+    },
+    {
+      "name": "Ken",
+      "number": "949-383-1818",
+      "id": 3
+    },
+    {
+      "name": "Joey",
+      "number": "123-456-7774",
+      "id": 4
+    },
+    {
+      "name": "Kenny",
+      "number": "949-395-6811",
+      "id": 5
+    },
+    {
+      "name": "Joey Diaz",
+      "number": "1-800-231-2922",
+      "id": 6
+    },
+    {
+      "name": "Jim Buss",
+      "number": "1-800-bye",
+      "id": 7
+    }
+  ]
+}
