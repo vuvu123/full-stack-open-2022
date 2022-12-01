@@ -1,0 +1,17 @@
+GET http://localhost:3003/api/blogs
+
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvZWpvZSIsImlkIjoiNjM1YWRjNzIzNWZjYzU4YWQzZTNmNWE1IiwiaWF0IjoxNjY2ODk5MDc5fQ.qftSC1iOkSI8Rkr5EuGApxQhCPKr7fIvEvQWRupBw3g
+
+{
+  "title": "Asdfa",
+  "author": "Joe",
+  "url": "http://blog.joe.com",
+  "likes": 15,
+  "userId": "635adc7235fcc58ad3e3f5a5"
+}
+
+###
+GET http://localhost:3003/api/users

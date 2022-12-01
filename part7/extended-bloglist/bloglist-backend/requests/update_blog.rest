@@ -1,0 +1,12 @@
+GET http://localhost:3003/api/blogs
+
+###
+PUT http://localhost:3003/api/blogs/634da51fc1eed29429ac0885
+Content-Type: application/json
+
+  {
+    "title": "CSS Master",
+    "author": "Kevin Powell",
+    "url": "http://blog.kevinpowell.com",
+    "likes": 12
+  }
